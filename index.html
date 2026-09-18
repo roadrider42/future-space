@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  ⚠️ Die Seite ist eine ANGEBOTSFASSUNG und soll nicht gefunden werden.
+  Beides gehoert zusammen: das Element hier und die robots.txt daneben. Wer
+  eine zweite HTML-Datei anlegt, kopiert diese Zeile mit -- bplus/404.html
+  traegt sie, und das ist kein Zufall, sondern der Grund, warum es hier eine
+  404-Seite mit vier Zeilen gibt statt einer Kopie dieser Datei.
+-->
+<meta name="robots" content="noindex, nofollow">
+<title>Future Space · Lernen nach dem Besuch — Angebotsfassung</title>
+<meta name="description" content="Angebotsfassung fuer Future Space: Wie ein Besuch im Future Space weiterlernbar wird. Nicht oeffentlich, nicht abgestimmt.">
+
+<!--
+  ===========================================================================
+  ANGEBOTSSEITE future-space.plinyoo.com — Aufbau A („Drei Tueren")
+  ===========================================================================
+
+  Gebaut nach docs/features/sources/entwurf-future-space-angebotsseite.md
+  (Stand eae082d0, Gestalter) und entwurf-future-space-seite.md (39e34261).
+  Heiko hat Aufbau A am 18.09.2026 entschieden.
+
+  ⚠️ WOHIN DIESE DATEIEN GEHOEREN, UND WOHIN NICHT.
+  Hier liegt der Ordner, ausgeliefert wird er von hier NICHT. Dieses Repo hat
+  genau eine Pages-Seite, und die traegt `spoonup.me`
+  (webseite-spoonup.yml + webseite-spoonup/CNAME). Ein zweiter CNAME hier ist
+  genau der Zustand, den bug-0135-ein-repo-je-domain.spec.ts bewacht. Deshalb:
+  KEIN CNAME, KEIN Workflow. Die Seite bekommt ein eigenes Repo -- das
+  anzulegen ist Heikos Hand.
+
+  DER WORTLAUT GEHOERT DER REDAKTION, und er ist eingesetzt. Alle 49 Stellen
+  dieser Datei und die 3 der 404-Seite tragen den Text aus
+  02-produkt/wortlaut-angebotsseite-future-space.md (Stand 18.09.2026).
+  Die Markierungen `data-wortlaut` sind damit weg -- sie waren die Liste zum
+  Abarbeiten, nicht Gestaltung. Wer hier Text aendert, aendert ihn dort zuerst.
+
+  FARBEN, und die eine Abweichung vom Entwurf, die gerechnet ist:
+
+    --text        #11242e   auf Weiss 15,96      aus dem Entwurf
+    --akzent      #951E81   auf Weiss  7,55      Logo-Magenta, aus dem Entwurf
+    --linie       #dbe5e8                        aus dem Entwurf
+    --text-leise  #5b6c74   auf Weiss  5,47      ABWEICHUNG, siehe unten
+    --grund-2     #f6f8f9                        leise Flaeche, neu
+    --akzent-tint #f6eef4   Akzent darauf 6,64   Flaeche der Pille, neu
+
+  ⚠️ Der Entwurf gibt `--text-leise: #657881` vor. Gerechnet: auf Weiss 4,61 --
+  das traegt. Auf der leisen Flaeche `#f6f8f9` sind es aber **4,33**, und
+  genau dort steht der Kleintext dieser Seite (Unterzeilen der Karten,
+  Antworten der Fragen). Ein Ton, der auf der einen Flaeche besteht und auf
+  der anderen durchfaellt, ist eine Falle: Sie faellt erst auf, wenn jemand
+  einen Absatz verschiebt. Deshalb EIN Ton fuer beide Flaechen, vier
+  Helligkeitsstufen dunkler: `#5b6c74` -- 5,47 auf Weiss, 5,13 auf `#f6f8f9`.
+  Der Unterschied ist mit blossem Auge nicht zu sehen, die Zahl schon.
+
+  KEINE weitere Logofarbe als Text: Die uebrigen fuenf liegen auf Weiss unter
+  4,5 (Rot 5,00 knapp darueber, aber es ist nicht der entschiedene Akzent).
+
+  KEIN GOOGLE-FONTS-AUFRUF, derselbe Grund wie auf der bplus-Seite: Eine Seite
+  fuer eine deutsche gemeinnuetzige GmbH soll beim ersten Laden keine
+  Verbindung in die USA aufbauen. Inter steht als erster Wunsch in der
+  Schriftreihe; wer sie nicht hat, bekommt die Systemschrift. Das ist eine
+  Entscheidung gegen zwei Dinge: gegen den fremden Aufruf und gegen das
+  Mitschleppen von 30 Schriftdateien, wie futurespace.org es mit Saira macht.
+
+  KOPF KLEBT NICHT (Entwurf 5.3 a). Bei 390 x 844 kostet ein klebender Kopf
+  mit 72 px dauerhaft 8,5 % der Bildschirmhoehe, und diese Seite hat keine
+  seiteninterne Navigation, die das rechtfertigt.
+
+  NICHT GEBAUT, und zwar gemessen statt vergessen:
+  - Der Zahlenabschnitt. Entfaellt ersatzlos (Entwurf 5.3 c), nicht als leere
+    Rubrikreihe. Keine Zahl auf dieser Seite ist fuer Future Space gemessen.
+  - Der Zitatabschnitt. Es gibt kein Zitat eines Menschen bei Future Space.
+  - Die Probe („So sieht eine Lerneinheit aus"). Ihre Bedingung ist bindend:
+    nur mit einer ECHTEN Karte aus einem Future-Space-Thema samt Quellzeile.
+    Am 18.09.2026 live nachgesehen (nur lesend, ueber den Dienstschluessel):
+    kein Thema mit „future" oder „space" im Namen, kein Schlagwort mit
+    „future". Gegenprobe, damit „0 Treffer" nicht „nicht gelesen" heisst:
+    12 Themen insgesamt sichtbar, 905 Lernkarten. Also gibt es die Karte
+    nicht, und der Abschnitt entfaellt -- er wird NICHT mit einer Karte aus
+    einem fremden Thema gefuellt.
+  ===========================================================================
+-->
+<style>
+  :root {
+    --text: #11242e;
+    --text-leise: #5b6c74;
+    --akzent: #951E81;
+    --akzent-dunkel: #7a1869;
+    --akzent-tint: #f6eef4;
+    --grund: #ffffff;
+    --grund-2: #f6f8f9;
+    --linie: #dbe5e8;
+    --dunkel: #10242e;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font: 17px/1.6 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    color: var(--text);
+    background: var(--grund);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { line-height: 1.2; margin: 0 0 .6em; font-weight: 700; }
+  h1 { font-size: clamp(1.9rem, 6vw, 3rem); letter-spacing: -.02em; }
+  h2 { font-size: clamp(1.4rem, 4vw, 2rem); }
+  h3 { font-size: 1.05rem; margin-bottom: .35em; }
+  p { margin: 0 0 1rem; }
+  a { color: var(--akzent); }
+
+  .huelle { width: 100%; max-width: 62rem; margin: 0 auto; padding: 0 1.25rem; }
+  section { padding: clamp(2.5rem, 7vw, 4.5rem) 0; }
+  section.leise { background: var(--grund-2); }
+  .leise-text { color: var(--text-leise); }
+
+  /* Kopf — NICHT klebend (Entwurf 5.3 a), weisse Flaeche mit Linie darunter. */
+  header { background: var(--grund); border-bottom: 1px solid var(--linie); }
+  .kopf {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: .75rem 1rem; min-height: 72px; padding-top: .6rem; padding-bottom: .6rem;
+  }
+  .marke { display: inline-flex; align-items: center; gap: .55rem; font-weight: 800; font-size: 1.1rem; }
+  /* Das Zeichen von Future Space traegt sechs Farben; auf Weiss traegt davon
+     nur das Magenta Schrift. Hier ist es FLAECHE, nicht Text -- ein Quadrat
+     von 10 px neben dem Wort, nach dem Vorbild bplus/index.html:62-65. Ein
+     fremdes Logo stellen wir nicht auf unsere Seite. */
+  .marke i { width: 10px; height: 10px; border-radius: 2px; background: var(--akzent); }
+  .kopf-rechts { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .9rem; }
+  /* Der zweite Weg, falls das Antippen ins Leere geht: die Adresse zum Lesen
+     und Abschreiben. Klein, leise -- aber da. */
+  .kopf-rechts .adresse { font-size: .9rem; color: var(--text-leise); }
+
+  /* Schaltflaechen — 48 px (Entwurf 5.3 b), Radius 6 px, Tastenrahmen 3 px. */
+  .knopf {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 48px; padding: .875rem 1.5rem;
+    border-radius: 6px; font-weight: 650; font-size: .97rem;
+    text-decoration: none; border: 1px solid transparent;
+    transition: background-color .15s, color .15s;
+  }
+  .knopf-voll { background: var(--akzent); color: #fff; }
+  .knopf-voll:hover { background: var(--akzent-dunkel); }
+  .knopf-rand { border-color: var(--akzent); color: var(--akzent); background: transparent; }
+  .knopf-rand:hover { background: var(--akzent); color: #fff; }
+  .knopf:focus-visible { outline: 3px solid var(--akzent); outline-offset: 3px; }
+
+  /* Titelbereich */
+  .augenbraue {
+    display: inline-block; margin-bottom: 1rem;
+    padding: .3rem .8rem; border-radius: 999px;
+    background: var(--akzent-tint); color: var(--akzent);
+    font-size: .85rem; font-weight: 600;
+  }
+  .titel-text { max-width: 42rem; }
+  .titel-text > p { font-size: clamp(1rem, 2.4vw, 1.2rem); color: var(--text-leise); }
+  .knopfreihe { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+
+  /* Fassungszeile (Teil 1, Frage 1) — dieselbe Anatomie wie die Augenbraue,
+     keine neue Klasse. Sie steht an ZWEI Stellen in dieser einen Datei und in
+     keiner Formatvorlage: Wenn die Inhalte freigegeben sind, ist Entfernen
+     ein Griff. Die Bedingung steht hier, damit sie nicht ein Jahr stehen
+     bleibt: SIE KOMMT WEG, SOBALD DIE INHALTE ABGESTIMMT SIND. */
+  .fassung {
+    display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .9rem;
+    margin-top: 1.5rem;
+  }
+  .fassung .augenbraue { margin-bottom: 0; }
+  .fassung a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+
+  /* Raster und Karten */
+  .raster { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  @media (min-width: 40rem) { .raster.drei { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 58rem) { .raster.drei { grid-template-columns: repeat(3, 1fr); } }
+  .karte { background: var(--grund); border: 1px solid var(--linie); border-radius: .8rem; padding: 1.35rem; }
+  .karte p:last-child { margin-bottom: 0; }
+  /* Die drei Rubriken sind die Einteilung, die Future Space auf der eigenen
+     Startseite benutzt -- in Grossbuchstaben, wie dort. 12,48 px, die
+     Untergrenze dieser Seitenfamilie. */
+  .karte .rubrik {
+    display: block; margin-bottom: .45rem;
+    font-size: .78rem; font-weight: 700; color: var(--akzent);
+    text-transform: uppercase; letter-spacing: .05em;
+  }
+  .karte .unter { color: var(--text-leise); font-size: .95rem; margin-bottom: .5rem; }
+
+  /* Schritte */
+  ol.schritte { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+  @media (min-width: 52rem) { ol.schritte { grid-template-columns: repeat(3, 1fr); } }
+  ol.schritte li { counter-increment: s; background: var(--grund); border: 1px solid var(--linie); border-radius: .8rem; padding: 1.35rem; }
+  ol.schritte li::before {
+    content: counter(s); display: grid; place-items: center;
+    width: 2rem; height: 2rem; margin-bottom: .8rem;
+    border-radius: 999px; background: var(--akzent); color: #fff; font-weight: 700;
+  }
+
+  /* Fragen — eine Frage ist eine Tippflaeche wie jede andere: 48 px. */
+  details { border-bottom: 1px solid var(--linie); padding: .9rem 0; }
+  details summary {
+    cursor: pointer; font-weight: 650; list-style: none;
+    display: flex; align-items: center; min-height: 48px;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content: " +"; color: var(--akzent); font-weight: 800; margin-left: auto; padding-left: .75rem; }
+  details[open] summary::after { content: " −"; }
+  details p { margin: .7rem 0 0; color: var(--text-leise); }
+  details summary:focus-visible { outline: 3px solid var(--akzent); outline-offset: 3px; }
+
+  /* Abschluss */
+  .abschluss { background: var(--dunkel); color: #fff; }
+  .abschluss h2 { color: #fff; }
+  .abschluss p { color: rgba(255,255,255,.88); max-width: 38rem; }
+  .abschluss .knopf-voll { background: #fff; color: var(--dunkel); }
+  .abschluss .knopf-voll:hover { background: #e7eef0; }
+  .abschluss .klein { font-size: .9rem; color: rgba(255,255,255,.88); margin-top: 1rem; }
+
+  /* Fuss */
+  footer { padding: 2rem 0 2.5rem; border-top: 1px solid var(--linie); color: var(--text-leise); font-size: .92rem; }
+  footer .traeger { max-width: 44rem; margin-bottom: 1.25rem; }
+  footer .traeger a { color: var(--akzent); font-weight: 600; }
+  .fussreihe { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: center; justify-content: space-between; }
+  .fussreihe nav { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+  /* Rechtsverweise: 44 px, damit sie auf dem Telefon mit dem Daumen zu treffen
+     sind. Ein Impressum, das man nicht antippen kann, ist nicht „unmittelbar
+     erreichbar". */
+  .fussreihe nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--text-leise); }
+  .fussreihe nav a:hover { color: var(--akzent); }
+  /* Der Nebenausgang aus Teil 1, Frage 2: die fremde Marke steht VOR dem
+     Klick im Text, nicht erst danach im Reiter des Browsers. */
+  footer .nebenausgang { display: inline-flex; align-items: center; min-height: 44px; }
+  footer .fassung { margin-top: 1.25rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="huelle kopf">
+    <div class="marke"><i aria-hidden="true"></i><span>Future Space</span></div>
+    <div class="kopf-rechts">
+      <!-- Hauptweg, und er fuehrt NICHT in die Anmeldung (Entwurf 5.3 e):
+           kein mailto, weil das auf einem Telefon ohne eingerichtetes
+           Postfach nichts tut, und kein ?brand=-Parameter, weil er auf
+           app.plinyoo.com nichts bewirkt. -->
+      <a class="knopf knopf-voll" href="https://app.plinyoo.com/fruehe-mitgestalter">Rückmeldung geben</a>
+      <span class="adresse">oder schreibt an heiko@plinyoo.com</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section>
+    <div class="huelle titel-text">
+      <span class="augenbraue">Ein Vorschlag für Future Space</span>
+      <h1>Wo Wissen lebendig wird — auch nach dem Besuch.</h1>
+      <p>Der Besuch bei euch ist ein Tag. Wir schlagen vor, was danach kommt: eure Themen zum Weiterüben auf dem Telefon, für alle, die bei euch waren.</p>
+      <div class="knopfreihe">
+        <a class="knopf knopf-voll" href="https://app.plinyoo.com/fruehe-mitgestalter">Rückmeldung geben</a>
+        <a class="knopf knopf-rand" href="#tueren">Für wen das ist</a>
+      </div>
+      <p class="fassung">
+        <span class="augenbraue">Angebotsfassung 1 · Stand 18. September 2026 · Die Texte sind Vorschläge und noch nicht mit euch abgestimmt.</span>
+        <a href="https://app.plinyoo.com/fruehe-mitgestalter">Rückmeldung geben</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- DIE DREI TUEREN. Die Einteilung steht woertlich auf der eigenen
+       Startseite von futurespace.org (FÜR SCHULKLASSEN · FÜR ALLE · FÜR DIE
+       FERIEN) -- Conny muss nichts uebersetzen, um zu sehen, wo ihr Angebot
+       in dieser Seite vorkommt. -->
+  <section class="leise" id="tueren">
+    <div class="huelle">
+      <h2>Für wen das ist</h2>
+      <p class="leise-text">Dieselben drei Gruppen, die auf eurer Startseite stehen — und was plinyoo für jede davon täte.</p>
+      <div class="raster drei">
+        <div class="karte">
+          <span class="rubrik">Für Schulklassen</span>
+          <h3>Die Klasse übt weiter</h3>
+          <p>Was die Klasse bei euch gemacht hat, liegt danach als Thema bereit: Lernkarten und Fragen dazu. Die Lehrkraft gibt einen Code weiter, zum Abscannen oder zum Abtippen; damit richtet sich jede und jeder einmal einen Zugang ein.</p>
+        </div>
+        <div class="karte">
+          <span class="rubrik">Für alle</span>
+          <h3>Wer neugierig geblieben ist</h3>
+          <p>Besucherinnen und Besucher nehmen das Thema mit nach Hause und gehen es in ein paar Minuten am Tag durch. Derselbe Code gilt für beliebig viele Menschen — ihr verwaltet niemanden einzeln.</p>
+        </div>
+        <div class="karte">
+          <span class="rubrik">Für die Ferien</span>
+          <h3>Zwischen zwei Ferienwochen</h3>
+          <p>Die Inhalte eines Ferienkurses bleiben da, wenn der Kurs vorbei ist. Wer im Herbst dabei war, findet sie im Frühjahr wieder.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    HIER STUENDE DIE PROBE („So sieht eine Lerneinheit aus", bplus:258-309).
+    Sie ist NICHT gebaut, und das ist gemessen, nicht vergessen: Ihre Bedingung
+    verlangt eine echte Karte aus einem Future-Space-Thema samt Quellzeile. Am
+    18.09.2026 gibt es live kein solches Thema (0 Treffer auf „future" und
+    „space", Gegenprobe: 12 Themen, 905 Karten sichtbar). Eine erfundene Karte
+    waere dieselbe Sorte Fehler wie eine erfundene Kennzahl -- sie sieht
+    gemessen aus. Sobald eine Karte vorliegt, kommt der Abschnitt AN DIESE
+    STELLE, zwischen die drei Tueren und „Was ihr behaltet".
+  -->
+
+  <section>
+    <div class="huelle">
+      <h2>Was ihr behaltet</h2>
+      <div class="raster drei">
+        <div class="karte">
+          <h3>Die Inhalte bleiben eure</h3>
+          <p>Ihr schreibt sie, ihr ändert sie, und ihr entscheidet bei jeder Karte, wer sie sehen darf. Wir stellen die Plattform, nicht den Lehrplan.</p>
+        </div>
+        <div class="karte">
+          <h3>Euer Haus bleibt euer Haus</h3>
+          <p>Am Besuch selbst ändert sich nichts. Was wir vorschlagen, fängt an, wenn die Tür hinter der Gruppe zufällt.</p>
+        </div>
+        <div class="karte">
+          <h3>Der Anfang ist klein</h3>
+          <p>Ein Thema, eine Klasse, ein Ferienkurs — damit lässt sich anfangen. Und wenn es nichts für euch ist, hört es da auch wieder auf.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="leise">
+    <div class="huelle">
+      <h2>So fangt ihr an</h2>
+      <ol class="schritte">
+        <li>
+          <h3>Ein Thema aussuchen</h3>
+          <p>Eines, das ihr ohnehin oft zeigt. Lieber das kleinste als das wichtigste.</p>
+        </li>
+        <li>
+          <h3>Wir machen den Anfang</h3>
+          <p>Aus eurem Material, mit der Quelle unter jeder Karte. Ihr lest alles gegen, bevor es jemand sieht.</p>
+        </li>
+        <li>
+          <h3>Eine Gruppe probiert es aus</h3>
+          <p>Eine Klasse, ein Ferienkurs. Danach entscheidet ihr, ob mehr daraus wird.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="huelle" style="max-width:46rem">
+      <h2>Häufige Fragen</h2>
+      <details>
+        <summary>Müssen wir etwas installieren?</summary>
+        <p>Nein. Es läuft im Browser, auch auf dem Telefon. Zum Anfangen braucht ihr nichts außer einem Thema.</p>
+      </details>
+      <details>
+        <summary>Wer schreibt die Inhalte?</summary>
+        <p>Ihr. plinyoo stellt die Plattform, auf der sie laufen — fachlich steht euer Name darunter, nicht unserer.</p>
+      </details>
+      <details>
+        <summary>Können wir weitere Themen dazunehmen?</summary>
+        <p>Ja, jederzeit und ohne uns zu fragen. Jedes Thema steht für sich; ihr fangt mit einem an und nehmt später weitere dazu.</p>
+      </details>
+      <details>
+        <summary>Was kostet das?</summary>
+        <!-- „Das steht noch nicht fest." ist die Antwort der bplus-Seite und
+             genau richtig gebaut: keine Zahl, keine Ausweichformel. Bei einer
+             Organisation, deren eigenes Wort `kostenfrei` ist, ist das die
+             wahrscheinlichste Frage ueberhaupt. -->
+        <p>Das steht noch nicht fest. Wir würden es gemeinsam festlegen, wenn aus dem Vorschlag etwas wird — nicht vorher.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="abschluss">
+    <div class="huelle">
+      <h2>Sagt uns, was daran nicht stimmt.</h2>
+      <p>Diese Seite ist ein Vorschlag, kein Angebot. Der nützlichste nächste Schritt ist eure Rückmeldung — zum Beispiel: welche der drei Gruppen oben ist eure?</p>
+      <div class="knopfreihe">
+        <a class="knopf knopf-voll" href="https://app.plinyoo.com/fruehe-mitgestalter">Rückmeldung geben</a>
+      </div>
+      <p class="klein">Das Formular dahinter gehört zu plinyoo, der Plattform hinter diesem Vorschlag. Ihr könnt stattdessen auch einfach an heiko@plinyoo.com schreiben.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="huelle">
+    <!-- Traegersatz nach dem Vorbild bplus/index.html:424-434: Wer die
+         Inhalte macht und wer die Plattform betreibt, steht getrennt da --
+         und die Rechtstexte liegen bei plinyoo, auch wenn Future Space ein
+         eigenes Impressum hat. -->
+    <!-- ⚠️ „plinyoo" steht hier als WORT, nicht als Verweis. Gemessen bei
+         390 × 844 war der Verweis im Fliesstext 51 × 17 px gross -- eine
+         Tippflaeche, die ein Daumen nicht trifft, und die einzige unter 44 px
+         auf der ganzen Seite. Der Weg ist nicht weg: `plinyoo.com` steht
+         unten in der Reihe, mit denselben 44 px wie die Rechtsverweise. Ein
+         Verweis, den man nicht treffen kann, ist kein Weg. -->
+    <p class="traeger">Dieser Vorschlag beschreibt Inhalte von Future Space auf der Lernplattform plinyoo. Fachliche Inhalte: Future Space. Betrieb der Plattform, Datenhaltung und Rechtstexte: plinyoo.</p>
+    <div class="fussreihe">
+      <span>Angebotsfassung für Future Space — erstellt von plinyoo.</span>
+      <nav>
+        <a href="https://www.plinyoo.com">plinyoo.com</a>
+        <a href="https://www.plinyoo.com/impressum">Impressum</a>
+        <a href="https://www.plinyoo.com/datenschutz">Datenschutz</a>
+        <a href="https://www.plinyoo.com/urheberrecht">Urheberrecht</a>
+      </nav>
+    </div>
+    <p>
+      <a class="nebenausgang" href="https://app.plinyoo.com/login">Schon Zugang? Zur Lernplattform plinyoo.</a>
+    </p>
+    <p class="fassung">
+      <span class="augenbraue">Angebotsfassung 1 · Stand 18. September 2026 · noch nicht abgestimmt</span>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

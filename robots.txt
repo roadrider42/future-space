@@ -1,0 +1,6 @@
+# Angebotsfassung. Sie soll nicht gefunden werden, solange sie nicht
+# abgestimmt ist. Das Gegenstueck steht als <meta name="robots"> in jeder
+# HTML-Datei dieses Ordners -- beides gehoert zusammen: Das Element schuetzt
+# die einzelne Seite, diese Datei die ganze Auslieferung.
+User-agent: *
+Disallow: /
