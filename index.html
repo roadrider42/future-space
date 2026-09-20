@@ -26,6 +26,42 @@
   gleiche Routen, eigene Inhalte.
 
   ===========================================================================
+  ⚠️ ZWEI STELLEN WEICHEN BEWUSST VON DER SCHABLONE AB — BEIDE GEMESSEN.
+  ===========================================================================
+
+  1 · „plinyoo" steht im Traegersatz als WORT, nicht als Verweis. Die
+      Schablone verlinkt es dort; gemessen bei 390 x 844 ist dieser Verweis
+      51 x 17 px -- die einzige Tippflaeche der Seite unter 44 pt. Der Weg ist
+      nicht weg: `plinyoo.com` steht unten in der Reihe, mit denselben 44 px
+      wie die Rechtsverweise.
+
+  2 · `.abschluss` ist DUNKEL, in der Schablone hell. Auf der dunklen Flaeche
+      ergibt der Akzent `#951E81` Kontrast 2,12 -- deshalb ist der Rand-Knopf
+      dort weiss (15,98), beides vom Browser gerechnet. Hell zu werden, nur
+      weil die Schablone hell ist, tauschte gemessene Lesbarkeit gegen
+      Aehnlichkeit.
+
+  Beide Maengel stehen als Eintrag fuer bplus in `claude/ui-backlog.md` --
+  sie sind dort dieselben und bleiben es, solange sie niemand meldet.
+
+  Was ausserdem nicht aus der Schablone kommt, weil es dort nichts gibt:
+  der Nebenausgang im Fuss, der vierte Rechtsverweis und die Marke ohne
+  Unterzeile. Die drei bleiben (Heiko, 20.09.2026).
+
+  ⚠️ ZWEI WEITERE STUECKE SIND AM 20.09.2026 ERSATZLOS WEGGEFALLEN, ebenfalls
+  auf Heikos Wort: die FASSUNGSZEILE (Titel und Fuss) und die E-MAIL-ADRESSE
+  (in der Kopfzeile und im Satz unter dem Abschluss). Gegenprobe ueber beide
+  Dateien des Ordners: die Postanschrift und die Fassungskennung kommen null
+  mal vor. Wer eins von beiden wieder einsetzt, setzt es an EINER Stelle ein
+  und laesst die andere stehen -- deshalb steht es hier als Paar.
+
+  ⚠️ Und deshalb steht hier auch keine der beiden Zeichenketten AUSGESCHRIEBEN.
+  Ein Kommentar, der zitiert, was verschwinden sollte, macht jede Suche
+  danach unbrauchbar -- `grep` findet ihn und meldet einen Treffer, den es
+  nicht gibt. Der Arm im Nachweis liest deshalb die Datei OHNE Kommentare,
+  und diese Zeilen halten sich daran, damit auch eine Suche von Hand stimmt.
+
+  ===========================================================================
   ⚠️ DIESE SEITE IST DIE ZWEITE IHRER ART, UND ES KOMMEN WEITERE.
   ===========================================================================
 
@@ -40,11 +76,11 @@
       wie es anfaengt · haeufige Fragen · Abschluss · Fuss
     · JEDE Knopfreihe ist ein Paar: `knopf-voll` + `knopf-rand`.
       Kopf       Anmelden (Rand)          + Hauptaufruf (voll)
-      Titel      Hauptaufruf (voll)       + Lerneinheit ansehen (Rand, #probe)
+      Titel      Hauptaufruf (voll)       + Eine Lernkarte ansehen (Rand, #probe)
       Abschluss  Hauptaufruf (voll)       + Zum Lernbereich (Rand)
-    · Die vier Wege: zweimal `/restaurants/public/<KENNUNG>` (Kopf und
-      Abschluss), dazu der Fussverweis auf dieselbe Adresse, und der
-      Hauptaufruf auf `/fruehe-mitgestalter?brand=plinyoo`.
+    · Die Wege: DREIMAL `/restaurants/public/<KENNUNG>` (Kopf, Abschluss,
+      Fussverweis) und DREIMAL `/fruehe-mitgestalter?brand=plinyoo` (Kopf,
+      Titel, Abschluss). Dazu der seiteninterne Anker `#probe`.
     · 404.html traegt die zwei Wege der Kopfzeile und bleibt kurz.
     · Der Fuss: Traegersatz, vier Rechtsverweise auf `www.plinyoo.com`,
       je 44 px hoch.
@@ -160,7 +196,10 @@
 
   .huelle { width: 100%; max-width: 62rem; margin: 0 auto; padding: 0 1.25rem; }
   section { padding: clamp(2.5rem, 7vw, 4.5rem) 0; }
-  section.leise { background: var(--grund-2); }
+  /* `hell` ist der Name aus der Schablone (bplus:185), nicht `leise`. Die
+     Flaeche dahinter bleibt unsere: `--grund-2`, gegen die der Kleintext
+     nachgerechnet ist. */
+  section.hell { background: var(--grund-2); }
   .leise-text { color: var(--text-leise); }
 
   /* Kopf — NICHT klebend (Entwurf 5.3 a), weisse Flaeche mit Linie darunter. */
@@ -175,10 +214,9 @@
      von 10 px neben dem Wort, nach dem Vorbild bplus/index.html:62-65. Ein
      fremdes Logo stellen wir nicht auf unsere Seite. */
   .marke i { width: 10px; height: 10px; border-radius: 2px; background: var(--akzent); }
-  .kopf-rechts { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .9rem; }
-  /* Der zweite Weg, falls das Antippen ins Leere geht: die Adresse zum Lesen
-     und Abschreiben. Klein, leise -- aber da. */
-  .kopf-rechts .adresse { font-size: .9rem; color: var(--text-leise); }
+  /* Name aus der Schablone (bplus:170). Zwei Wege in der Kopfzeile: anmelden,
+     wer schon dabei ist -- Rueckmeldung geben, wer noch nicht. */
+  .kopfknoepfe { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .9rem; }
 
   /* Schaltflaechen — 48 px (Entwurf 5.3 b), Radius 6 px, Tastenrahmen 3 px. */
   .knopf {
@@ -201,21 +239,23 @@
     background: var(--akzent-tint); color: var(--akzent);
     font-size: .85rem; font-weight: 600;
   }
-  .titel-text { max-width: 42rem; }
-  .titel-text > p { font-size: clamp(1rem, 2.4vw, 1.2rem); color: var(--text-leise); }
+  /* Namen aus der Schablone (bplus:180-181). */
+  .titel { max-width: 42rem; }
+  .titel .vorspann { font-size: clamp(1rem, 2.4vw, 1.2rem); color: var(--text-leise); }
   .knopfreihe { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
 
-  /* Fassungszeile (Teil 1, Frage 1) — dieselbe Anatomie wie die Augenbraue,
-     keine neue Klasse. Sie steht an ZWEI Stellen in dieser einen Datei und in
-     keiner Formatvorlage: Wenn die Inhalte freigegeben sind, ist Entfernen
-     ein Griff. Die Bedingung steht hier, damit sie nicht ein Jahr stehen
-     bleibt: SIE KOMMT WEG, SOBALD DIE INHALTE ABGESTIMMT SIND. */
-  .fassung {
-    display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .9rem;
-    margin-top: 1.5rem;
-  }
-  .fassung .augenbraue { margin-bottom: 0; }
-  .fassung a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+  /* ⚠️ HIER STAND `.fassung` — die Fassungszeile mit Stand und dem Hinweis,
+     dass nichts abgestimmt ist, an zwei Stellen: unter dem Titel und im Fuss.
+     (Der Wortlaut steht hier absichtlich nicht; siehe Kopf der Datei.)
+     Sie trug ihre eigene Abnahmebedingung im Kommentar:
+     „SIE KOMMT WEG, SOBALD DIE INHALTE ABGESTIMMT SIND." Heiko hat das am
+     20.09.2026 eingeloest -- beide Stellen ersatzlos, und die Formatvorlage
+     mit ihnen. Eine Vorlage fuer ein Bauteil, das es nicht mehr gibt, ist
+     dasselbe wie ein Kommentar, der einen anderen Weg beschreibt als der Code.
+
+     Mitgegangen ist dabei die vierte Schaltflaeche „Rueckmeldung geben": Sie
+     sass IN der Fassungszeile. Der Kontaktweg steht seitdem dreimal auf der
+     Seite, nicht viermal -- Kopf, Titel, Abschluss. */
 
   /* Raster und Karten */
   .raster { display: grid; gap: 1rem; grid-template-columns: 1fr; }
@@ -259,11 +299,12 @@
   .probe-karte p:last-child { margin-bottom: 0; }
   .frage { margin-bottom: 2rem; }
   .frage h3 { margin-bottom: .9rem; }
-  /* ⚠️ In der Vorlage steht hier eine Marke aus zwei Woertern („STUFE 1 ·
-     ERINNERN") in Versalien. Bei uns steht ein ganzer SATZ darueber, und ein
-     Satz in Versalien bei 12,5 px ist schwerer zu lesen, nicht wichtiger.
-     Deshalb dieselbe Rolle, dieselbe Farbe -- ohne `text-transform`. */
-  .frage-vorspann {
+  /* Name aus der Schablone (bplus:157). ⚠️ OHNE `text-transform: uppercase`:
+     Dort steht eine Marke aus zwei Woertern („STUFE 1 · ERINNERN"), hier ein
+     ganzer SATZ. Ein Satz in Versalien bei 12,5 px ist schwerer zu lesen,
+     nicht wichtiger. Gemessen aufgefallen: `innerText` lieferte „EINE DER
+     DREI FRAGEN ZU DIESER KARTE:". */
+  .stufe {
     display: block; margin-bottom: .5rem;
     font-size: .9rem; font-weight: 700; color: var(--akzent);
   }
@@ -294,6 +335,30 @@
   }
   .quellzeile { font-size: .9rem; margin-top: 2.5rem; color: var(--text-leise); }
 
+  /* ⚠️ OHNE SKRIPT SIND DIE VIER MOEGLICHKEITEN KEINE SCHALTFLAECHEN.
+     Gefunden vom Reviewer am 20.09.2026: Ohne JavaScript luden vier
+     `<button>` zum Antippen ein und taten nichts -- `cursor: pointer`, nicht
+     `disabled`, und beim Druck passierte NICHTS. Das ist schlimmer als kein
+     Probeabschnitt: ein Bedienelement, das nichts bewirken kann.
+     Die Schablone hat denselben Mangel; er steht als Eintrag im Backlog.
+
+     Hier loest ihn `<noscript>`: Die Moeglichkeiten werden unantippbar, die
+     richtige ist markiert, und der Beleg steht offen. Wer kein Skript hat,
+     sieht damit dasselbe wie jemand, der schon geantwortet hat -- die Probe
+     ZEIGT dann, statt zu fragen. */
+  .probe-ohne-skript .option { cursor: default; pointer-events: none; }
+  .probe-ohne-skript .beleg[hidden] { display: block; }
+  /* Die richtige Moeglichkeit traegt dieselbe Auszeichnung wie nach einer
+     Antwort -- Farbe UND Zeichen, nie nur Farbe. */
+  .probe-ohne-skript .option[data-richtig="1"] {
+    border-color: var(--akzent); border-width: 2px;
+    background: var(--akzent-tint); font-weight: 600;
+  }
+  .probe-ohne-skript .option[data-richtig="1"]::after {
+    content: "✓"; margin-left: auto; padding-left: 1rem;
+    color: var(--akzent); font-weight: 700;
+  }
+
   /* Fragen — eine Frage ist eine Tippflaeche wie jede andere: 48 px. */
   details { border-bottom: 1px solid var(--linie); padding: .9rem 0; }
   details summary {
@@ -306,8 +371,9 @@
   details p { margin: .7rem 0 0; color: var(--text-leise); }
   details summary:focus-visible { outline: 3px solid var(--akzent); outline-offset: 3px; }
 
-  /* Abschluss */
+  /* Abschluss. Die Breitengrenze ist die der Schablone (bplus:186). */
   .abschluss { background: var(--dunkel); color: #fff; }
+  .abschluss .huelle { max-width: 46rem; }
   .abschluss h2 { color: #fff; }
   .abschluss p { color: rgba(255,255,255,.88); max-width: 38rem; }
   .abschluss .knopf-voll { background: #fff; color: var(--dunkel); }
@@ -319,11 +385,13 @@
      Kontrast **2,12** (vom Browser gerechnet, Verstellung d gefahren). Ein
      Rand-Knopf in der Vorlagenfarbe waere an dieser einen Stelle unlesbar.
      Also derselbe Knopf, in derselben Rolle, in der Farbe, die auf dieser
-     Flaeche traegt: Weiss auf `#10242e` = 15,44.
+     Flaeche traegt: Weiss auf `#10242e` = **15,98**. (Hier stand 15,44 --
+     vom Reviewer am 20.09.2026 nachgerechnet und berichtigt.)
      Der `knopf-voll` daneben ist hier schon aus demselben Grund gedreht. */
   .abschluss .knopf-rand { border-color: #fff; color: #fff; background: transparent; }
   .abschluss .knopf-rand:hover { background: #fff; color: var(--dunkel); }
-  .abschluss .klein { font-size: .9rem; color: rgba(255,255,255,.88); margin-top: 1rem; }
+  /* Name aus der Schablone (bplus:171). */
+  .abschluss .hinweis-klein { font-size: .9rem; color: rgba(255,255,255,.88); margin-top: 1rem; }
 
   /* Fuss */
   footer { padding: 2rem 0 2.5rem; border-top: 1px solid var(--linie); color: var(--text-leise); font-size: .92rem; }
@@ -339,7 +407,6 @@
   /* Der Nebenausgang aus Teil 1, Frage 2: die fremde Marke steht VOR dem
      Klick im Text, nicht erst danach im Reiter des Browsers. */
   footer .nebenausgang { display: inline-flex; align-items: center; min-height: 44px; }
-  footer .fassung { margin-top: 1.25rem; }
 </style>
 </head>
 <body>
@@ -347,7 +414,7 @@
 <header>
   <div class="huelle kopf">
     <div class="marke"><i aria-hidden="true"></i><span>Future Space</span></div>
-    <div class="kopf-rechts">
+    <div class="kopfknoepfe">
       <!-- ZWEI WEGE IN DER KOPFZEILE, in der Reihenfolge der Vorlage: anmelden,
            wer schon dabei ist -- Rueckmeldung geben, wer noch nicht. Bei bplus
            heisst der zweite „Zugang anfragen"; hier heisst er „Rueckmeldung
@@ -373,7 +440,6 @@
            eingerichtetes Postfach nichts. -->
       <a class="knopf knopf-rand" href="https://app.plinyoo.com/restaurants/public/74fdc53a-e23c-41f8-8002-eeed78dfe56e">Anmelden</a>
       <a class="knopf knopf-voll" href="https://app.plinyoo.com/fruehe-mitgestalter?brand=plinyoo">Rückmeldung geben</a>
-      <span class="adresse">oder schreibt an heiko@plinyoo.com</span>
     </div>
   </div>
 </header>
@@ -381,10 +447,10 @@
 <main>
 
   <section>
-    <div class="huelle titel-text">
+    <div class="huelle titel">
       <span class="augenbraue">Ein Vorschlag für Future Space</span>
       <h1>Wo Wissen lebendig wird — auch nach dem Besuch.</h1>
-      <p>Der Besuch bei euch ist ein Tag. Wir schlagen vor, was danach kommt: eure Themen zum Weiterüben auf dem Telefon, für alle, die bei euch waren.</p>
+      <p class="vorspann">Der Besuch bei euch ist ein Tag. Wir schlagen vor, was danach kommt: eure Themen zum Weiterüben auf dem Telefon, für alle, die bei euch waren.</p>
       <!-- Derselbe Anker wie in der Vorlage: `#probe`. Er zeigt auf den
            Abschnitt weiter unten, und der ist seit dem 20.09.2026 gebaut --
            mit einer echten Karte aus dem Thema, nicht mit einer erfundenen. -->
@@ -392,40 +458,21 @@
         <a class="knopf knopf-voll" href="https://app.plinyoo.com/fruehe-mitgestalter?brand=plinyoo">Rückmeldung geben</a>
         <a class="knopf knopf-rand" href="#probe">Eine Lernkarte ansehen</a>
       </div>
-      <p class="fassung">
-        <span class="augenbraue">Angebotsfassung 1 · Stand 18. September 2026 · Die Texte sind Vorschläge und noch nicht mit euch abgestimmt.</span>
-        <a href="https://app.plinyoo.com/fruehe-mitgestalter?brand=plinyoo">Rückmeldung geben</a>
-      </p>
     </div>
   </section>
 
-  <!-- DIE DREI TUEREN. Die Einteilung steht woertlich auf der eigenen
-       Startseite von futurespace.org (FÜR SCHULKLASSEN · FÜR ALLE · FÜR DIE
-       FERIEN) -- Conny muss nichts uebersetzen, um zu sehen, wo ihr Angebot
-       in dieser Seite vorkommt. -->
-  <section class="leise" id="tueren">
-    <div class="huelle">
-      <h2>Für wen das ist</h2>
-      <p class="leise-text">Dieselben drei Gruppen, die auf eurer Startseite stehen — und was plinyoo für jede davon täte.</p>
-      <div class="raster drei">
-        <div class="karte">
-          <span class="rubrik">Für Schulklassen</span>
-          <h3>Die Klasse übt weiter</h3>
-          <p>Was die Klasse bei euch gemacht hat, liegt danach als Thema bereit: Lernkarten und Fragen dazu. Die Lehrkraft gibt einen Code weiter, zum Abscannen oder zum Abtippen; damit richtet sich jede und jeder einmal einen Zugang ein.</p>
-        </div>
-        <div class="karte">
-          <span class="rubrik">Für alle</span>
-          <h3>Wer neugierig geblieben ist</h3>
-          <p>Besucherinnen und Besucher nehmen das Thema mit nach Hause und gehen es in ein paar Minuten am Tag durch. Derselbe Code gilt für beliebig viele Menschen — ihr verwaltet niemanden einzeln.</p>
-        </div>
-        <div class="karte">
-          <span class="rubrik">Für die Ferien</span>
-          <h3>Zwischen zwei Ferienwochen</h3>
-          <p>Die Inhalte eines Ferienkurses bleiben da, wenn der Kurs vorbei ist. Wer im Herbst dabei war, findet sie im Frühjahr wieder.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ⚠️ HIER STEHT IN DER SCHABLONE `section.hell#themen` — „Die ersten drei
+       Themen", drei Karten mit Rubrik „Thema 1/2/3". Fuer Future Space gibt es
+       keinen solchen Text, und einen zu schreiben waere neuer Wortlaut
+       (Heiko, 20.09.2026: „Wording von Future Space so lassen").
+
+       Dazu ein gemessener Grund, der bleibt, auch wenn Text kaeme: Live gibt
+       es EIN Thema, nicht drei. Drei zu versprechen waere eine Zusage, die die
+       App nicht einloest -- dieselbe Klasse wie ein Verweis, der mehr
+       verspricht als der Weg haelt.
+
+       Der Platz bleibt frei, nicht gefuellt: Kommt der Abschnitt spaeter, wird
+       er hier eingesetzt, ohne dass etwas umgebaut werden muss. -->
 
   <!--
     DIE PROBE. Steht seit dem 20.09.2026 hier, an genau der Stelle, die der
@@ -476,8 +523,17 @@
     der Karte, ist eine zweite Fassung derselben Sache, und die veraltet.
   -->
 
-  <section class="leise" id="probe">
+  <!-- ⚠️ `probe-ohne-skript` steht FEST im Markup und wird vom Skript unten
+       wieder entfernt. Andersherum -- die Klasse per Skript SETZEN -- waere
+       falsch: Ohne Skript liefe nichts, und genau der Fall ist gemeint. Wer
+       die Zeile im Skript loescht, bekommt eine Probe, die nicht mehr fragt;
+       wer sie hier loescht, bekommt vier tote Schaltflaechen. Beides haelt
+       ein Arm fest. -->
+  <section class="hell probe-ohne-skript" id="probe">
     <div class="huelle">
+      <noscript>
+        <p class="vorspann-klein"><b>Ohne JavaScript:</b> Die richtige Antwort und der Beleg stehen gleich da — antippen lässt sich hier nichts.</p>
+      </noscript>
       <h2>So sieht eine Lernkarte aus</h2>
       <p class="vorspann-klein">So haben wir angefangen: eine echte Karte aus dem Thema, das für euch bereitsteht — gebaut aus einem öffentlichen Fachartikel, mit der Quelle darunter. Ihr lest sie gegen, bevor sie jemand sieht.</p>
 
@@ -488,7 +544,7 @@
       </div>
 
       <div class="frage">
-        <span class="frage-vorspann">Eine der drei Fragen zu dieser Karte:</span>
+        <span class="stufe">Eine der drei Fragen zu dieser Karte:</span>
         <h3>Welcher Faktor hindert nächtliche Wärmestrahlung in der Stadt?</h3>
         <div class="optionen">
           <button type="button" class="option" data-richtig="0">Beton in Fassaden und Gebäudewänden der Stadt</button>
@@ -503,7 +559,52 @@
     </div>
   </section>
 
-  <section>
+  <!-- DIE DREI TUEREN, an der Stelle der Schablone („Fuer wen", bplus:311).
+       Die Einteilung steht woertlich auf der eigenen Startseite von
+       futurespace.org (FÜR SCHULKLASSEN · FÜR ALLE · FÜR DIE FERIEN) -- Conny
+       muss nichts uebersetzen, um zu sehen, wo ihr Angebot in dieser Seite
+       vorkommt.
+
+       ⚠️ Die Schablone hat hier drei Karten OHNE Rubrik. Unsere tragen eine,
+       und sie bleibt: Sie ist der Wortlaut, der die Bruecke zu ihrer eigenen
+       Startseite schlaegt -- also kein Zusatz, sondern der Sinn des
+       Abschnitts. -->
+  <section id="tueren">
+    <div class="huelle">
+      <h2>Für wen das ist</h2>
+      <p class="leise-text">Dieselben drei Gruppen, die auf eurer Startseite stehen — und was plinyoo für jede davon täte.</p>
+      <div class="raster drei">
+        <div class="karte">
+          <span class="rubrik">Für Schulklassen</span>
+          <h3>Die Klasse übt weiter</h3>
+          <p>Was die Klasse bei euch gemacht hat, liegt danach als Thema bereit: Lernkarten und Fragen dazu. Die Lehrkraft gibt einen Code weiter, zum Abscannen oder zum Abtippen; damit richtet sich jede und jeder einmal einen Zugang ein.</p>
+        </div>
+        <div class="karte">
+          <span class="rubrik">Für alle</span>
+          <h3>Wer neugierig geblieben ist</h3>
+          <p>Besucherinnen und Besucher nehmen das Thema mit nach Hause und gehen es in ein paar Minuten am Tag durch. Derselbe Code gilt für beliebig viele Menschen — ihr verwaltet niemanden einzeln.</p>
+        </div>
+        <div class="karte">
+          <span class="rubrik">Für die Ferien</span>
+          <h3>Zwischen zwei Ferienwochen</h3>
+          <p>Die Inhalte eines Ferienkurses bleiben da, wenn der Kurs vorbei ist. Wer im Herbst dabei war, findet sie im Frühjahr wieder.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⚠️ HIER STEHT IN DER SCHABLONE `section.warm` — „Warum aus dieser Hand".
+       Bei bplus die Herkunft der Fachlichkeit („Ueber 20 Jahre
+       Sachverstaendigenpraxis", mit Namen und Zitat des Gutachters). Fuer
+       Future Space gibt es keinen solchen Satz, und einen zu schreiben waere
+       neuer Wortlaut -- ausgeschlossen durch Heikos Vorgabe „Wording von
+       Future Space so lassen" (20.09.2026).
+
+       An dieser Stelle steht deshalb „Was ihr behaltet" -- unser eigener
+       Abschnitt, den die Schablone nicht kennt. Er nimmt den Platz ein, ohne
+       ihn zu beanspruchen: Kommt spaeter ein Herkunftstext, bekommt er die
+       Flaeche `warm` darueber oder darunter, ohne dass etwas umgebaut wird. -->
+  <section class="hell">
     <div class="huelle">
       <h2>Was ihr behaltet</h2>
       <div class="raster drei">
@@ -523,7 +624,9 @@
     </div>
   </section>
 
-  <section class="leise">
+  <!-- Stelle der Schablone: „So laeuft es" (bplus:357), dort eine weisse
+       Flaeche mit `ol.schritte`. -->
+  <section>
     <div class="huelle">
       <h2>So fangt ihr an</h2>
       <ol class="schritte">
@@ -543,8 +646,10 @@
     </div>
   </section>
 
-  <section>
-    <div class="huelle" style="max-width:46rem">
+  <!-- Stelle der Schablone: „Haeufige Fragen" (bplus:380), helle Flaeche,
+       Huelle auf 48rem begrenzt. -->
+  <section class="hell">
+    <div class="huelle" style="max-width:48rem">
       <h2>Häufige Fragen</h2>
       <details>
         <summary>Müssen wir etwas installieren?</summary>
@@ -586,7 +691,7 @@
            und dann steht die andere Schaltflaeche oben, nicht links. Die
            Vorlage sagt an dieser Stelle „links" und ist damit auf dem Telefon
            falsch. -->
-      <p class="klein">Das Formular dahinter gehört zu plinyoo, der Plattform hinter diesem Vorschlag. Ihr könnt stattdessen auch einfach an heiko@plinyoo.com schreiben. „Zum Lernbereich" ist für alle, die schon einen Zugang zu plinyoo haben; wer noch keinen hat, braucht für eine Rückmeldung auch keinen.</p>
+      <p class="hinweis-klein">Das Formular dahinter gehört zu plinyoo, der Plattform hinter diesem Vorschlag. „Zum Lernbereich" ist für alle, die schon einen Zugang zu plinyoo haben; wer noch keinen hat, braucht für eine Rückmeldung auch keinen.</p>
     </div>
   </section>
 
@@ -663,9 +768,6 @@
     <p>
       <a class="nebenausgang" href="https://app.plinyoo.com/restaurants/public/74fdc53a-e23c-41f8-8002-eeed78dfe56e">Schon Zugang? Zur Lernplattform plinyoo.</a>
     </p>
-    <p class="fassung">
-      <span class="augenbraue">Angebotsfassung 1 · Stand 18. September 2026 · noch nicht abgestimmt</span>
-    </p>
   </div>
 </footer>
 
@@ -679,6 +781,11 @@
   // die Antwortmoeglichkeiten auch, nur der Beleg bleibt verborgen. Das ist
   // Absicht -- eine Probe, die ohne Skript leer ist, waere eine Probe, die
   // beim ersten Ladefehler nichts mehr zeigt.
+  // Erst hier wird die Probe zur Frage. Bis zu dieser Zeile steht sie als
+  // ANTWORT da (Klasse `probe-ohne-skript` im Markup) -- wer kein Skript hat,
+  // bleibt bei der Antwort stehen und bekommt keine toten Schaltflaechen.
+  document.querySelector('#probe')?.classList.remove('probe-ohne-skript');
+
   for (const frage of document.querySelectorAll('.frage')) {
     const optionen = [...frage.querySelectorAll('.option')];
     const beleg = frage.querySelector('.beleg');
