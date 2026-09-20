@@ -21,7 +21,55 @@
 
   Gebaut nach docs/features/sources/entwurf-future-space-angebotsseite.md
   (Stand eae082d0, Gestalter) und entwurf-future-space-seite.md (39e34261).
-  Heiko hat Aufbau A am 18.09.2026 entschieden.
+  Heiko hat Aufbau A am 18.09.2026 entschieden. Am 20.09.2026 an die
+  Wegestruktur von `bplus.plinyoo.com` angeglichen -- gleiche Schaltflaechen,
+  gleiche Routen, eigene Inhalte.
+
+  ===========================================================================
+  ⚠️ DIESE SEITE IST DIE ZWEITE IHRER ART, UND ES KOMMEN WEITERE.
+  ===========================================================================
+
+  Damit die dritte nicht rueckwaerts aus zwei Seiten erraten werden muss,
+  steht hier, was SCHEMA ist und was JE KUNDE wechselt. Das ist keine
+  Schablone mit Platzhaltern -- die Seite ist fertig. Es ist die Liste der
+  Stellen, an denen der naechste Kunde anders ist.
+
+  SCHEMA -- steht auf jeder Seite dieser Art gleich:
+
+    · Abschnittsfolge: Kopf · Titel · drei Gruppen · Probe · was bleibt ·
+      wie es anfaengt · haeufige Fragen · Abschluss · Fuss
+    · JEDE Knopfreihe ist ein Paar: `knopf-voll` + `knopf-rand`.
+      Kopf       Anmelden (Rand)          + Hauptaufruf (voll)
+      Titel      Hauptaufruf (voll)       + Lerneinheit ansehen (Rand, #probe)
+      Abschluss  Hauptaufruf (voll)       + Zum Lernbereich (Rand)
+    · Die vier Wege: zweimal `/restaurants/public/<KENNUNG>` (Kopf und
+      Abschluss), dazu der Fussverweis auf dieselbe Adresse, und der
+      Hauptaufruf auf `/fruehe-mitgestalter?brand=plinyoo`.
+    · 404.html traegt die zwei Wege der Kopfzeile und bleibt kurz.
+    · Der Fuss: Traegersatz, vier Rechtsverweise auf `www.plinyoo.com`,
+      je 44 px hoch.
+    · Kein CNAME, kein Workflow in diesem Repo. Die Auslieferung steht in
+      SO-KOMMT-ES-LIVE.md daneben.
+    · Kein Google-Fonts-Aufruf, `noindex` in HTML und robots.txt.
+
+  JE KUNDE -- genau vier Dinge, und alle vier stehen in dieser Datei:
+
+    1 · DER WORTLAUT. Ueberschriften, Karten, Fragen, Abschlusssatz. Er
+        gehoert der Redaktion und liegt im Vault unter 02-produkt/.
+        Beschriftungen wechseln mit: hier „Rueckmeldung geben", bei bplus
+        „Zugang anfragen" -- die Seite ist ein Vorschlag, kein Angebot.
+    2 · DIE THEMENKENNUNG. Steht an DREI Stellen in dieser Datei und einer
+        in 404.html. Die Begruendung, warum sie nicht einmal steht, und der
+        Nachweis, der die vier vergleicht: siehe Fuss.
+    3 · DIE PROBE. Eine ECHTE Karte aus dem Thema des Kunden, mit ihren
+        Fragen und ihrer Quellzeile -- woertlich aus der Datenbank. Nie eine
+        erfundene, nie eine aus einem fremden Thema.
+    4 · DIE FARBEN. `--akzent` aus dem Logo des Kunden, gegen Weiss UND gegen
+        `--grund-2` nachgerechnet. Ein Ton, der nur auf einer der beiden
+        Flaechen traegt, ist eine Falle -- siehe `--text-leise` unten.
+
+  Domain und Auslieferrepo wechseln ebenfalls, stehen aber NICHT hier: Sie
+  gehoeren in SO-KOMMT-ES-LIVE.md, weil nur dort jemand sie braucht.
 
   ⚠️ WOHIN DIESE DATEIEN GEHOEREN, UND WOHIN NICHT.
   Hier liegt der Ordner, ausgeliefert wird er von hier NICHT. Dieses Repo hat
@@ -73,14 +121,8 @@
   - Der Zahlenabschnitt. Entfaellt ersatzlos (Entwurf 5.3 c), nicht als leere
     Rubrikreihe. Keine Zahl auf dieser Seite ist fuer Future Space gemessen.
   - Der Zitatabschnitt. Es gibt kein Zitat eines Menschen bei Future Space.
-  - Die Probe („So sieht eine Lerneinheit aus"). Ihre Bedingung ist bindend:
-    nur mit einer ECHTEN Karte aus einem Future-Space-Thema samt Quellzeile.
-    Am 18.09.2026 live nachgesehen (nur lesend, ueber den Dienstschluessel):
-    kein Thema mit „future" oder „space" im Namen, kein Schlagwort mit
-    „future". Gegenprobe, damit „0 Treffer" nicht „nicht gelesen" heisst:
-    12 Themen insgesamt sichtbar, 905 Lernkarten. Also gibt es die Karte
-    nicht, und der Abschnitt entfaellt -- er wird NICHT mit einer Karte aus
-    einem fremden Thema gefuellt.
+  - Die Probe stand bis zum 20.09.2026 hier. Sie ist jetzt gebaut, mit einer
+    echten Karte -- die Begruendung fuer beides steht an ihrer Stelle.
   ===========================================================================
 -->
 <style>
@@ -94,6 +136,11 @@
     --grund-2: #f6f8f9;
     --linie: #dbe5e8;
     --dunkel: #10242e;
+    /* Fuer den Probeabschnitt: „falsch" braucht einen eigenen Ton, der Akzent
+       kann ihn nicht mittragen. Gerechnet auf Weiss und auf der eigenen
+       Flaeche; die Zahlen haelt der Nachweis fest, nicht dieser Kommentar. */
+    --falsch: #a4231c;
+    --falsch-tint: #fbeceb;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -179,7 +226,11 @@
   /* Die drei Rubriken sind die Einteilung, die Future Space auf der eigenen
      Startseite benutzt -- in Grossbuchstaben, wie dort. 12,48 px, die
      Untergrenze dieser Seitenfamilie. */
-  .karte .rubrik {
+  /* ⚠️ Auch `.probe-karte` -- die Klasse `.rubrik` sass dort schon und sah
+     aus wie Fliesstext, weil dieser Block auf `.karte` eingegrenzt war. Eine
+     Auszeichnung, die an einer Stelle greift und an der Nachbarstelle nicht,
+     faellt niemandem auf: Es fehlt ja nichts, es sieht nur anders aus. */
+  .karte .rubrik, .probe-karte .rubrik {
     display: block; margin-bottom: .45rem;
     font-size: .78rem; font-weight: 700; color: var(--akzent);
     text-transform: uppercase; letter-spacing: .05em;
@@ -195,6 +246,53 @@
     width: 2rem; height: 2rem; margin-bottom: .8rem;
     border-radius: 999px; background: var(--akzent); color: #fff; font-weight: 700;
   }
+
+  /* Die Probe — dieselbe Anatomie wie in der Vorlage (bplus:146-183):
+     die Karte mit farbiger Kante links, darunter die Fragen, unter jeder
+     Frage der Beleg aus der Quelle. */
+  .vorspann-klein { max-width: 42rem; color: var(--text-leise); }
+  .probe-karte {
+    background: var(--grund); border: 1px solid var(--linie);
+    border-left: 4px solid var(--akzent);
+    border-radius: .8rem; padding: 1.35rem; margin-bottom: 2rem;
+  }
+  .probe-karte p:last-child { margin-bottom: 0; }
+  .frage { margin-bottom: 2rem; }
+  .frage h3 { margin-bottom: .9rem; }
+  /* ⚠️ In der Vorlage steht hier eine Marke aus zwei Woertern („STUFE 1 ·
+     ERINNERN") in Versalien. Bei uns steht ein ganzer SATZ darueber, und ein
+     Satz in Versalien bei 12,5 px ist schwerer zu lesen, nicht wichtiger.
+     Deshalb dieselbe Rolle, dieselbe Farbe -- ohne `text-transform`. */
+  .frage-vorspann {
+    display: block; margin-bottom: .5rem;
+    font-size: .9rem; font-weight: 700; color: var(--akzent);
+  }
+  .optionen { display: grid; gap: .6rem; }
+  .option {
+    display: flex; align-items: center; text-align: left;
+    width: 100%; min-height: 52px; padding: .8rem 1.1rem;
+    font: inherit; color: var(--text);
+    background: var(--grund); border: 1px solid var(--linie);
+    border-radius: 6px; cursor: pointer;
+    transition: border-color .15s, background-color .15s;
+  }
+  .option:hover:not([disabled]) { border-color: var(--akzent); }
+  .option:focus-visible { outline: 3px solid var(--akzent); outline-offset: 2px; }
+  .option[disabled] { cursor: default; }
+  /* ⚠️ Richtig und falsch NIE nur ueber Farbe: jede Option bekommt ein
+     Zeichen. Wer Rot und Gruen nicht unterscheidet, sieht sonst zwei
+     gleich aussehende Kaesten -- und auf dieser Seite sind es ohnehin
+     Magenta und Rot, die noch naeher beieinander liegen. */
+  .option.richtig { border-color: var(--akzent); border-width: 2px; background: var(--akzent-tint); font-weight: 600; }
+  .option.richtig::after { content: "✓"; margin-left: auto; padding-left: 1rem; color: var(--akzent); font-weight: 700; }
+  .option.falsch { border-color: var(--falsch); border-width: 2px; background: var(--falsch-tint); }
+  .option.falsch::after { content: "✕"; margin-left: auto; padding-left: 1rem; color: var(--falsch); font-weight: 700; }
+  .beleg {
+    margin: .9rem 0 0; padding: .9rem 1.1rem;
+    background: var(--grund); border: 1px solid var(--linie);
+    border-radius: 6px; font-size: .95rem;
+  }
+  .quellzeile { font-size: .9rem; margin-top: 2.5rem; color: var(--text-leise); }
 
   /* Fragen — eine Frage ist eine Tippflaeche wie jede andere: 48 px. */
   details { border-bottom: 1px solid var(--linie); padding: .9rem 0; }
@@ -287,18 +385,12 @@
       <span class="augenbraue">Ein Vorschlag für Future Space</span>
       <h1>Wo Wissen lebendig wird — auch nach dem Besuch.</h1>
       <p>Der Besuch bei euch ist ein Tag. Wir schlagen vor, was danach kommt: eure Themen zum Weiterüben auf dem Telefon, für alle, die bei euch waren.</p>
-      <!-- ⚠️ DIE VORLAGE ZEIGT HIER AUF `#probe` („Lerneinheit ansehen").
-           Diesen Abschnitt gibt es auf dieser Seite nicht, und ein Anker auf
-           einen Abschnitt, den es nicht gibt, ist ein Weg ins Nichts. Die
-           Gestalt ist dieselbe wie in der Vorlage -- voller Knopf, Rand-Knopf,
-           Anker auf einen eigenen Abschnitt --, das Ziel ist der Abschnitt,
-           den es hier wirklich gibt. Der Probeabschnitt wird NICHT hier
-           erfunden: sein Wortlaut gehoert der Redaktion und seine Karte dem
-           Thema. Als der Abschnitt am 18.09. entfiel, gab es das Thema noch
-           nicht unter diesem Namen -- inzwischen gibt es es. Bestellt. -->
+      <!-- Derselbe Anker wie in der Vorlage: `#probe`. Er zeigt auf den
+           Abschnitt weiter unten, und der ist seit dem 20.09.2026 gebaut --
+           mit einer echten Karte aus dem Thema, nicht mit einer erfundenen. -->
       <div class="knopfreihe">
         <a class="knopf knopf-voll" href="https://app.plinyoo.com/fruehe-mitgestalter?brand=plinyoo">Rückmeldung geben</a>
-        <a class="knopf knopf-rand" href="#tueren">Für wen das ist</a>
+        <a class="knopf knopf-rand" href="#probe">Eine Lernkarte ansehen</a>
       </div>
       <p class="fassung">
         <span class="augenbraue">Angebotsfassung 1 · Stand 18. September 2026 · Die Texte sind Vorschläge und noch nicht mit euch abgestimmt.</span>
@@ -336,15 +428,80 @@
   </section>
 
   <!--
-    HIER STUENDE DIE PROBE („So sieht eine Lerneinheit aus", bplus:258-309).
-    Sie ist NICHT gebaut, und das ist gemessen, nicht vergessen: Ihre Bedingung
-    verlangt eine echte Karte aus einem Future-Space-Thema samt Quellzeile. Am
-    18.09.2026 gibt es live kein solches Thema (0 Treffer auf „future" und
-    „space", Gegenprobe: 12 Themen, 905 Karten sichtbar). Eine erfundene Karte
-    waere dieselbe Sorte Fehler wie eine erfundene Kennzahl -- sie sieht
-    gemessen aus. Sobald eine Karte vorliegt, kommt der Abschnitt AN DIESE
-    STELLE, zwischen die drei Tueren und „Was ihr behaltet".
+    DIE PROBE. Steht seit dem 20.09.2026 hier, an genau der Stelle, die der
+    Kommentar an dieser Stelle vorgesehen hatte.
+
+    ⚠️ JEDES WORT DARIN IST AUS DER DATENBANK, NICHT AUSGEDACHT. Am 20.09.2026
+    gelesen (nur `select`, ueber den Dienstschluessel, aus dem Hauptbaum):
+
+      Thema  74fdc53a-…  „Future Space", public, 1 Schlagwort, 11 Karten
+      Karte  21a30a7c-1767-5cfb-8213-b47f27564599
+             „Urban Heat Island Effect: Fuenf zusammenwirkende Mechanismen"
+      Frage  95094a57-4ed5-5c8d-aada-c57fa35a6237 (Stufe 1, verstehen)
+
+    Kartentitel, Kartentext, Frage, die vier Antwortmoeglichkeiten IN IHRER
+    REIHENFOLGE, die richtige Antwort und der Beleg stehen WOERTLICH so in der
+    Datenbank -- nachgelesen, nicht uebernommen. Die Quellzeile ist aus
+    `source_meta` derselben Karte gebildet, in der Gestalt, die
+    `quellenangabe.ts` unter einer Karte erzeugt.
+
+    ⚠️ DER BELEG WEICHT ABSICHTLICH VON DER ZULIEFERUNG AB. Die Redaktion hatte
+    „Sie verringern den Sky View Factor und behindern die naechtliche
+    Waermestrahlung" geliefert und selbst dazugeschrieben: „Weicht ein Zeichen
+    ab, gilt die Datenbank." Es wich ab -- hier steht der Wert aus `evidence`.
+
+    ⚠️ DIE KARTE HAT FUTURE SPACE NIE GESEHEN. Wir haben sie aus einem
+    oeffentlichen Fachartikel gebaut. Der Vorspann sagt das ausdruecklich,
+    weil der Fuss derselben Seite „Fachliche Inhalte: Future Space" sagt --
+    ohne den Satz behauptete die Probe etwas Falsches ueber ihre Herkunft.
+
+    ⚠️ DER ABSCHNITT HEISST „LERNKARTE", NICHT „LERNEINHEIT". Die Vorlage sagt
+    „Lerneinheit"; im Produkt heisst so ein Vokabelkapitel (ADR-005), und der
+    Weg dorthin wurde am 08.09. entfernt. Ein Wort, das im selben Produkt etwas
+    anderes meint, gehoert nicht auf eine Angebotsseite. Ueberschrift und
+    Schaltflaeche tragen dasselbe Wort.
+
+    ⚠️ WARUM DIE BEDINGUNG VORHER NICHT ERFUELLT WAR, und warum das kein
+    Messfehler war: Hier stand „am 18.09. gibt es live kein solches Thema --
+    0 Treffer auf ‚future' und ‚space'". Das war richtig gemessen und trotzdem
+    ueberholt: Das Thema gab es die ganze Zeit, es hiess nur anders und wurde
+    am 20.09. umbenannt. Die KENNUNG war immer dieselbe.
+
+    Daraus die Regel fuer den naechsten, der hier etwas nicht baut: Eine
+    Begruendung, die an einem NAMEN haengt, hat ein Verfallsdatum, das niemand
+    sieht. Wer sie aufschreibt, schreibt dazu, woran sie haengt.
+
+    ⚠️ WER HIER TEXT AENDERT, AENDERT IHN IN DER DATENBANK. Diese Seite ist
+    eine Probe, kein Redaktionsort -- ein Satz, der hier anders steht als in
+    der Karte, ist eine zweite Fassung derselben Sache, und die veraltet.
   -->
+
+  <section class="leise" id="probe">
+    <div class="huelle">
+      <h2>So sieht eine Lernkarte aus</h2>
+      <p class="vorspann-klein">So haben wir angefangen: eine echte Karte aus dem Thema, das für euch bereitsteht — gebaut aus einem öffentlichen Fachartikel, mit der Quelle darunter. Ihr lest sie gegen, bevor sie jemand sieht.</p>
+
+      <div class="probe-karte">
+        <span class="rubrik">Aus dem Thema Future Space</span>
+        <h3>Urban Heat Island Effect: Fünf zusammenwirkende Mechanismen</h3>
+        <p>Die städtische Wärmeinsel entsteht durch fünf Prozesse. Beton, Asphalt und Ziegel speichern Wärme. Versiegelung reduziert die Verdunstung. Fehlende Vegetation spendet keinen Schatten. Stadtgeometrie hindert nächtliche Wärmestrahlung. Abwärme kommt aus Verkehr und Technik. Diese fünf Faktoren wirken zusammen und verstärken sich gegenseitig.</p>
+      </div>
+
+      <div class="frage">
+        <span class="frage-vorspann">Eine der drei Fragen zu dieser Karte:</span>
+        <h3>Welcher Faktor hindert nächtliche Wärmestrahlung in der Stadt?</h3>
+        <div class="optionen">
+          <button type="button" class="option" data-richtig="0">Beton in Fassaden und Gebäudewänden der Stadt</button>
+          <button type="button" class="option" data-richtig="0">Asphalt auf Straßen und großen Parkflächen</button>
+          <button type="button" class="option" data-richtig="1">Enge Straßenschluchten (Stadtgeometrie)</button>
+          <button type="button" class="option" data-richtig="0">Vegetation in Parks und an Straßenrändern der Stadt</button>
+        </div>
+        <p class="beleg" hidden><b>Beleg aus der Quelle:</b> &bdquo;Stadtgeometrie — enge Straßenschluchten verringern den Sky View Factor und behindern nächtliche Wärmestrahlung&ldquo;</p>
+      </div>
+
+      <p class="quellzeile">Quelle: 84 % der Städte zeigen nachts dasselbe Hitzemuster, was steckt dahinter? — Dominik Hochwarth, abgerufen 15.09.2026</p>
+    </div>
+  </section>
 
   <section>
     <div class="huelle">
@@ -423,7 +580,13 @@
         <a class="knopf knopf-voll" href="https://app.plinyoo.com/fruehe-mitgestalter?brand=plinyoo">Rückmeldung geben</a>
         <a class="knopf knopf-rand" href="https://app.plinyoo.com/restaurants/public/74fdc53a-e23c-41f8-8002-eeed78dfe56e">Zum Lernbereich</a>
       </div>
-      <p class="klein">Das Formular dahinter gehört zu plinyoo, der Plattform hinter diesem Vorschlag. Ihr könnt stattdessen auch einfach an heiko@plinyoo.com schreiben.</p>
+      <!-- ⚠️ Die Reihenfolge im Satz folgt der Reihenfolge auf dem Bildschirm:
+           erst der volle Knopf (Formular), dann der Rand-Knopf. KEINE
+           Richtungsangabe („links") -- die Reihe bricht auf dem Telefon um,
+           und dann steht die andere Schaltflaeche oben, nicht links. Die
+           Vorlage sagt an dieser Stelle „links" und ist damit auf dem Telefon
+           falsch. -->
+      <p class="klein">Das Formular dahinter gehört zu plinyoo, der Plattform hinter diesem Vorschlag. Ihr könnt stattdessen auch einfach an heiko@plinyoo.com schreiben. „Zum Lernbereich" ist für alle, die schon einen Zugang zu plinyoo haben; wer noch keinen hat, braucht für eine Rückmeldung auch keinen.</p>
     </div>
   </section>
 
@@ -506,5 +669,31 @@
   </div>
 </footer>
 
+<script>
+  // Eine Antwort wird geprueft, sobald sie angetippt ist. Danach zeigt die
+  // Frage die richtige Antwort und den Beleg aus der Quelle -- genau das ist
+  // der Lernvorgang: antworten, dann sehen warum. Uebernommen aus der
+  // Vorlage (bplus:443-461), weil es dasselbe Bauteil ist.
+  //
+  // ⚠️ Ohne dieses Skript bleibt der Abschnitt LESBAR: Die Fragen stehen da,
+  // die Antwortmoeglichkeiten auch, nur der Beleg bleibt verborgen. Das ist
+  // Absicht -- eine Probe, die ohne Skript leer ist, waere eine Probe, die
+  // beim ersten Ladefehler nichts mehr zeigt.
+  for (const frage of document.querySelectorAll('.frage')) {
+    const optionen = [...frage.querySelectorAll('.option')];
+    const beleg = frage.querySelector('.beleg');
+    for (const option of optionen) {
+      option.addEventListener('click', () => {
+        if (optionen.some((o) => o.disabled)) return;
+        for (const o of optionen) {
+          o.disabled = true;
+          if (o.dataset.richtig === '1') o.classList.add('richtig');
+          else if (o === option) o.classList.add('falsch');
+        }
+        if (beleg) beleg.hidden = false;
+      });
+    }
+  }
+</script>
 </body>
 </html>
