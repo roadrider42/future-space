@@ -15,6 +15,21 @@
   Was die Kopie leisten sollte, leistet hier ein Verweis: Wer sich verlaufen
   hat, kommt mit einem Druck zur Seite zurueck. Der `noindex`-Eintrag steht
   auch hier -- er gilt je Datei, nicht je Auslieferung.
+
+  ⚠️ SEIT DEM 20.09.2026 STEHEN HIER AUCH DIE ZWEI WEGE DER KOPFZEILE.
+  Grund: Wer ueber einen Pfad hereinkommt, den es nicht gibt, landet genau
+  hier -- und fand bis dahin nur den Weg zurueck zum Anfang. Ein Kontoinhaber
+  musste sich von vorn durchklicken. Das ist der Zustand, den Heiko an der
+  Hauptseite gemeldet hat, eine Datei weiter.
+
+  Was dabei NICHT passiert ist: eine Kopie der Seite. Es sind zwei Verweise,
+  und die Datei bleibt so kurz, wie sie war.
+
+  Und die Bedingung, die diese Datei oben selbst stellt, ist eingeloest: Die
+  Themenkennung steht jetzt in ZWEI Dateien, also vergleicht sie eine Pruefung
+  -- `die-angebotsseite-folgt-der-vorlage.spec.ts` liest JEDE Datei dieses
+  Ordners und haelt fest, dass darin keine andere Kennung vorkommt als die
+  eine. Das ist der Bauvorgang, den eine statische Seite nicht hat.
 -->
 <meta name="robots" content="noindex, nofollow">
 <title>Seite nicht gefunden · Future Space — Angebotsfassung</title>
@@ -28,19 +43,33 @@
   main { max-width: 32rem; }
   h1 { font-size: clamp(1.6rem, 5vw, 2.2rem); line-height: 1.2; margin: 0 0 .6em; }
   p { color: #5b6c74; margin: 0 0 1.5rem; }
-  a {
+  /* Dieselben Masse wie auf der Hauptseite: 48 px hoch, Radius 6, damit ein
+     Daumen sie trifft. Die Werte stehen hier ein zweites Mal, weil diese
+     Datei keine gemeinsame Formatvorlage hat -- das ist der Preis einer
+     statischen Seite und der Grund, warum es nur drei Verweise sind. */
+  .knopfreihe { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .knopf {
     display: inline-flex; align-items: center; justify-content: center;
     min-height: 48px; padding: .875rem 1.5rem; border-radius: 6px;
-    background: #951E81; color: #fff; text-decoration: none; font-weight: 650;
+    text-decoration: none; font-weight: 650; font-size: .97rem;
+    border: 1px solid transparent;
   }
-  a:focus-visible { outline: 3px solid #951E81; outline-offset: 3px; }
+  .knopf-voll { background: #951E81; color: #fff; }
+  .knopf-rand { border-color: #951E81; color: #951E81; background: transparent; }
+  .knopf:focus-visible { outline: 3px solid #951E81; outline-offset: 3px; }
 </style>
 </head>
 <body>
 <main>
   <h1>Diese Seite gibt es nicht.</h1>
   <p>Vielleicht hat sich in der Adresse etwas verschrieben. Der Vorschlag selbst steht noch.</p>
-  <a href="/">Zurück zum Vorschlag</a>
+  <!-- ⚠️ Die Themenkennung steht auch in `index.html`, an drei Stellen. Wer
+       eine aendert, aendert alle vier. Die Begruendung steht dort im Fuss. -->
+  <div class="knopfreihe">
+    <a class="knopf knopf-voll" href="/">Zurück zum Vorschlag</a>
+    <a class="knopf knopf-rand" href="https://app.plinyoo.com/restaurants/public/74fdc53a-e23c-41f8-8002-eeed78dfe56e">Anmelden</a>
+    <a class="knopf knopf-rand" href="https://app.plinyoo.com/fruehe-mitgestalter?brand=plinyoo">Rückmeldung geben</a>
+  </div>
 </main>
 </body>
 </html>
